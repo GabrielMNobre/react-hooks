@@ -1,44 +1,10 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import PageTitle from '../../components/layout/PageTitle';
 import SectionTitle from '../../components/layout/SectionTitle';
-
-const initialState = {
-  cart: [],
-  user: null,
-  number: 0,
-};
-
-const challengeInitialState = {
-  number: 0,
-  result: 0,
-};
-
-function challenge(state, action) {
-  switch (action.type) {
-    case 'number_add7':
-      return { ...state, number: state.number + 7 };
-    case 'number_add':
-      return { ...state, number: state.number + parseInt(action.payload.number, 10) };
-    case 'number_dividedBy25':
-      return { ...state, number: state.number / 25 };
-    case 'result':
-      return { ...state, result: Math.ceil(state.number) };
-    default:
-      return state;
-  }
-}
-
-// função de evolução do estado inicial
-function reducer(state, action) {
-  switch (action.type) {
-    case 'number_add2':
-      return { ...state, number: state.number + 2 };
-    case 'login':
-      return { ...state, user: { name: action.payload } };
-    default:
-      return state;
-  }
-}
+import {
+  reducer, challenge, initialState, challengeInitialState,
+} from '../../store';
+import { numberAdd, setUser } from '../../store/actions';
 
 function UseReducer() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -71,7 +37,7 @@ function UseReducer() {
         <button
           type="button"
           className="btn"
-          onClick={() => dispatch({ type: 'number_add2' })}
+          onClick={() => numberAdd(dispatch, 2)}
         >
           +2
         </button>
@@ -84,7 +50,7 @@ function UseReducer() {
           <button
             type="button"
             className="btn"
-            onClick={() => dispatch({ type: 'login', payload: login })}
+            onClick={() => setUser(dispatch, login)}
           >
             LOGIN
           </button>
@@ -99,7 +65,7 @@ function UseReducer() {
           <button
             type="button"
             className="btn"
-            onClick={() => challengeDispatch({ type: 'number_add7' })}
+            onClick={() => numberAdd(challengeDispatch, 7)}
           >
             +7
           </button>
@@ -120,12 +86,7 @@ function UseReducer() {
           <button
             type="button"
             className="btn"
-            onClick={() => challengeDispatch({
-              type: 'number_add',
-              payload: {
-                number,
-              },
-            })}
+            onClick={() => numberAdd(challengeDispatch, number)}
           >
             +
           </button>
