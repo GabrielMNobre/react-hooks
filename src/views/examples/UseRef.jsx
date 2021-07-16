@@ -33,7 +33,9 @@ const UseRef = () => {
         title="Hook UseRef"
         subtitle="Retorna um objeto mutável com a propriedade .current!"
       />
-      <SectionTitle title="Exercício #01" />
+      <SectionTitle
+        title="Exercício #01 - Contador de todas as letras digitadas nos dois inputs"
+      />
       <div className="center">
         <div>
           <span className="text">Valor: </span>
@@ -54,7 +56,9 @@ const UseRef = () => {
           onChange={(e) => setValue1(e.target.value)}
         />
       </div>
-      <SectionTitle title="Exercício #02" />
+      <SectionTitle
+        title="Exercício #02 - Mesclando texto digitado nos inputs"
+      />
       <div className="center">
         <input
           type="text"
