@@ -39,3 +39,10 @@ body {
     align-items: center;
     text-align: center;
 }
+
+select {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  border: 1px solid #0092c3;
+  background-color: white;
+}
